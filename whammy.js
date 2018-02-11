@@ -507,7 +507,9 @@
 		if(frame.canvas){ //CanvasRenderingContext2D
 			frame = frame.canvas;
 		}
-		if(frame.toDataURL){
+		if (frame instanceof ImageData) {
+			// nothing to do
+		} else if(frame.toDataURL){
 			// frame = frame.toDataURL('image/webp', this.quality);
 			// quickly store image data so we don't block cpu. encode in compile method.
 			frame = frame.getContext('2d').getImageData(0, 0, frame.width, frame.height);
